@@ -12,16 +12,16 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.nav__brand {
+.brand {
   font-weight: 600;
 }
 
-.nav__links {
+.links {
   display: flex;
   gap: 1.6rem;
 }
 
-.nav__links a.active {
+.links a.active {
   font-weight: 700;
   text-decoration: underline;
 }

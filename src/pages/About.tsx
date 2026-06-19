@@ -7,5 +7,5 @@ export default function About() {
         React Router to show client-side navigation.
       </p>
     </section>
-  )
+  );
 }

@@ -2,7 +2,7 @@
 // Presets are gated behind the "test" env so this file never affects
 // Vite's dev/build pipeline (which has its own React/Babel handling).
 module.exports = (api) => {
-  const isTest = api.env('test')
+  const isTest = api.env('test');
   return {
     presets: isTest
       ? [
@@ -11,5 +11,5 @@ module.exports = (api) => {
           '@babel/preset-typescript'
         ]
       : []
-  }
-}
+  };
+};

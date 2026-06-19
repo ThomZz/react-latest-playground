@@ -1,0 +1,61 @@
+/*
+ * The 62.5% trick: browsers default to 16px, so 62.5% makes 1rem = 10px.
+ * This keeps em/rem math trivial — 1.6rem = 16px, 2.4rem = 24px, etc.
+ * Using a percentage (not a fixed px) respects the user's browser font-size
+ * setting for accessibility.
+ */
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* Restore a comfortable base text size (1.6rem = 16px) after the 62.5% root. */
+  font-size: 1.6rem;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: #646cff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+
+code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 1.4rem;
+}

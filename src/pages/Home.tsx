@@ -1,38 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 import todosQuery from '../queries/todos';
-import { Link } from 'react-router';
+import styles from './Home.module.css';
+import Todo from '../components/Todo';
 
 export default function Home() {
-  const [count, setCount] = useState(0);
   const { data: todos, isLoading: areTodosLoading } = useQuery(todosQuery.list);
-  const { data: todo } = useQuery({
-    ...todosQuery.detail(count),
-    enabled: count > 0
-  });
 
   return (
     <section>
-      <h1>Home</h1>
-      <p>
-        A minimal React + TypeScript + React Router starter, built with Vite.
-      </p>
       {areTodosLoading ? (
         <p>Loading todos...</p>
       ) : (
-        <ul>
-          {todos?.map((todo) => (
-            <Link to={`/details/${todo.id}`} key={todo.id}>
-              <li>{todo.title}</li>
-            </Link>
-          ))}
-        </ul>
+        <>
+          <div className={styles.todos}>
+            {todos?.map((todo) => (
+              <Todo todo={todo} />
+            ))}
+          </div>
+          <p>Number of todos: {todos?.length ?? 0}</p>
+        </>
       )}
-      <button onClick={() => setCount((c) => c + 1)}>count is {count}</button>
-      <pre>{JSON.stringify(todo, null, 2)}</pre>
-      <p className="hint">
-        Edit <code>src/pages/Home.tsx</code> and save to start playing.
-      </p>
     </section>
   );
 }

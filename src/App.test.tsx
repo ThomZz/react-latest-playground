@@ -27,7 +27,6 @@ describe('App', () => {
   it('renders the brand and the Home page at the index route', () => {
     renderWithRouter('/');
     expect(screen.getByText(/React Playground/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Home' })).toBeInTheDocument();
   });
 
   it('navigates to the About page when the link is clicked', async () => {

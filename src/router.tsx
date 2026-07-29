@@ -3,7 +3,7 @@ import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
-import Details from './pages/Details';
+import Team from './pages/Team';
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
         element: <Home />,
         index: true
       },
-      { path: 'details/:id', element: <Details /> },
+      { path: 'team/:id', element: <Team /> },
       { path: 'about', element: <About /> },
       { path: '*', element: <NotFound /> }
     ]

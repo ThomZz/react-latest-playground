@@ -1,4 +1,4 @@
-import { NavLink, Link, Outlet } from 'react-router-dom';
+import { NavLink, Link, Outlet, ScrollRestoration } from 'react-router-dom';
 import styles from './App.module.css';
 
 export default function App() {
@@ -12,9 +12,14 @@ export default function App() {
           <NavLink to="/about">About</NavLink>
         </div>
       </nav>
-      <main className={styles.main}>
+      <div className={styles.content}>
         <Outlet />
-      </main>
+        <ScrollRestoration
+          getKey={(location) => {
+            return location.key;
+          }}
+        />
+      </div>
     </div>
   );
 }

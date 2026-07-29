@@ -6,6 +6,14 @@ import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
 
+// App renders <ScrollRestoration />, which only works inside a data router.
+// These tests use the lightweight MemoryRouter, so stub it to a no-op —
+// scroll restoration isn't what we're asserting here.
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  ScrollRestoration: () => null
+}));
+
 // App renders <NavLink> and <Outlet />, so it needs a router context.
 // MemoryRouter (the in-memory, non-data router) is the lightweight way to
 // provide it in component tests — we declare the same child routes so we

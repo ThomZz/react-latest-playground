@@ -10,11 +10,7 @@ export default tseslint.config(
   { ignores: ['dist'] },
   {
     files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      tanstackPluginQuery.configs['flat/recommended']
-    ],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended, tanstackPluginQuery.configs['flat/recommended']],
     languageOptions: {
       ecmaVersion: 2022,
       globals: globals.browser
@@ -25,10 +21,7 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true }
-      ]
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
     }
   },
   {

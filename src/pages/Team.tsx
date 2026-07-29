@@ -1,11 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import rosterQuery from '../queries/roster';
+import teamQuery from '../queries/team';
 import styles from './Team.module.css';
-import { CircularProgress } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { type Team } from '../api/models/team';
+import { CircularProgress, Skeleton } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Team() {
+  const queryClient = useQueryClient();
   const routeParams = useParams();
+  const { data: team, isLoading: isTeamLoading } = useQuery({
+    ...teamQuery.detail(routeParams.id!),
+    enabled: !!routeParams.id,
+    initialData: () => {
+      return queryClient
+        .getQueryData<Team[]>(teamQuery.list.queryKey)
+        ?.find((d) => d.abbrev.default === routeParams.id);
+    },
+    initialDataUpdatedAt: () => {
+      return queryClient.getQueryState(teamQuery.list.queryKey)?.dataUpdatedAt;
+    }
+  });
   const { data: roster, isLoading: isRosterLoading } = useQuery({
     ...rosterQuery.detail(routeParams.id!),
     enabled: !!routeParams.id
@@ -16,6 +31,19 @@ export default function Team() {
 
   return (
     <section className={styles.mainSection}>
+      <div className={styles.teamHeader}>
+        {isTeamLoading ? (
+          <>
+            <Skeleton height={48} width="200px" />
+            <Skeleton variant="circular" width="9rem" height="9rem" />
+          </>
+        ) : (
+          <>
+            <h1>{team?.name.default}</h1>
+            <img className={styles.teamLogo} src={team?.logoDark} alt={team?.commonName.default} />
+          </>
+        )}
+      </div>
       {isRosterLoading ? (
         <>
           <CircularProgress size="106px" aria-label="Loading…" />
@@ -24,7 +52,7 @@ export default function Team() {
       ) : (
         <div className={styles.rosterContainer}>
           {forwards.map((player) => (
-            <div key={player.id} className={styles.playerCard}>
+            <Link key={player.id} className={styles.playerCard} to={`./player/${player.id}`}>
               <img
                 className={styles.logo}
                 src={player.headshot}
@@ -33,10 +61,10 @@ export default function Team() {
               <p className={styles.name}>
                 {player.firstName.default} {player.lastName.default}
               </p>
-            </div>
+            </Link>
           ))}
           {defensemen.map((player) => (
-            <div key={player.id} className={styles.playerCard}>
+            <Link key={player.id} className={styles.playerCard} to={`./player/${player.id}`}>
               <img
                 className={styles.logo}
                 src={player.headshot}
@@ -45,10 +73,10 @@ export default function Team() {
               <p className={styles.name}>
                 {player.firstName.default} {player.lastName.default}
               </p>
-            </div>
+            </Link>
           ))}
           {goalies.map((player) => (
-            <div key={player.id} className={styles.playerCard}>
+            <Link key={player.id} className={styles.playerCard} to={`./player/${player.id}`}>
               <img
                 className={styles.logo}
                 src={player.headshot}
@@ -57,7 +85,7 @@ export default function Team() {
               <p className={styles.name}>
                 {player.firstName.default} {player.lastName.default}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       )}

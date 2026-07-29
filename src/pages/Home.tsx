@@ -12,11 +12,7 @@ export default function Home() {
   const [teamFilterInputValue, setTeamFilterInputValue] = useState<string>('');
   const filteredTeams = useMemo(() => {
     if (!teams) return [];
-    return teams.filter((team) =>
-      team.name.default
-        .toLowerCase()
-        .includes(teamFilterInputValue.toLowerCase())
-    );
+    return teams.filter((team) => team.name.default.toLowerCase().includes(teamFilterInputValue.toLowerCase()));
   }, [teams, teamFilterInputValue]);
 
   return (

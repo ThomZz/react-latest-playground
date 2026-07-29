@@ -1,0 +1,38 @@
+.mainSection {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+}
+
+.playerPhoto {
+  position: absolute;
+  /* Break out of .main's 2rem/1.2rem padding for a full-bleed image */
+  inset: -2rem -1.2rem;
+  min-height: calc(100vh - 4rem);
+  z-index: 0;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.playerPhoto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.headerContent {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}

@@ -26,7 +26,7 @@ npm test         # Jest (npm run test:watch for watch mode)
   router-dependent components, wrap in `<MemoryRouter>` — see
   [src/App.test.tsx](src/App.test.tsx).
 - **Formatting** is enforced via ESLint (`prettier/prettier` rule), so `npm run
-  lint` fails on formatting drift. No format-on-save is configured.
+lint` fails on formatting drift. No format-on-save is configured.
 - **Prettier style:** no semicolons, single quotes, no trailing commas.
 
 ## CI

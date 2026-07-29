@@ -1,11 +1,15 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { getTeams } from '../api/team';
+import { getTeam, getTeams } from '../api/team';
 
 const team = createQueryKeys('team', {
   list: {
     queryKey: null,
     queryFn: () => getTeams()
-  }
+  },
+  detail: (teamAbbrev: string) => ({
+    queryKey: [teamAbbrev],
+    queryFn: () => getTeam(teamAbbrev)
+  })
 });
 
 export default team;

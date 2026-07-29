@@ -26,7 +26,7 @@ function renderWithRouter(initialPath = '/') {
 describe('App', () => {
   it('renders the brand and the Home page at the index route', () => {
     renderWithRouter('/');
-    expect(screen.getByText(/React Playground/i)).toBeInTheDocument();
+    expect(screen.getByText(/ThomZz NHL app/i)).toBeInTheDocument();
   });
 
   it('navigates to the About page when the link is clicked', async () => {

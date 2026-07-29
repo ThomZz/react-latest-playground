@@ -3,8 +3,8 @@ import teamQuery from '../queries/team';
 import styles from './Home.module.css';
 import TeamCard from '../components/TeamCard';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import { useMemo, useState } from 'react';
+import { Autocomplete, CircularProgress } from '@mui/material';
 
 export default function Home() {
   const { data: teams, isLoading: areTeamsLoading } = useQuery(teamQuery.list);
@@ -38,7 +38,10 @@ export default function Home() {
         renderInput={(params) => <TextField {...params} label="Team" />}
       />
       {areTeamsLoading ? (
-        <p>Loading teams...</p>
+        <>
+          <CircularProgress size="106px" aria-label="Loading…" />
+          <p>Loading teams…</p>
+        </>
       ) : (
         <>
           <div className={styles.teamsContainer}>

@@ -6,7 +6,7 @@ export default function App() {
     <div className={styles.app}>
       <nav className={styles.nav}>
         <Link className={styles.brand} to="/">
-          <span>⚛️ React Playground</span>
+          <span>ThomZz NHL app</span>
         </Link>
         <div className={styles.links}>
           <NavLink to="/about">About</NavLink>

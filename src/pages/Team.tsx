@@ -4,12 +4,17 @@ import teamQuery from '../queries/team';
 import styles from './Team.module.css';
 import sharedStyles from '../styles/shared.module.css';
 import { type Team } from '../api/models/team';
-import { CircularProgress, Skeleton } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { Autocomplete, CircularProgress, Skeleton, TextField } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import RosterPlayerCard from '../components/RosterPlayerCard';
+import type { Player } from '../api/models/player';
+import { useMemo, useState } from 'react';
 
 export default function Team() {
   const queryClient = useQueryClient();
   const routeParams = useParams();
+  const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null);
+  const [playerFilterInputValue, setPlayerFilterInputValue] = useState<string>('');
   const { data: team, isLoading: isTeamLoading } = useQuery({
     ...teamQuery.detail(routeParams.id!),
     enabled: !!routeParams.id,
@@ -26,9 +31,15 @@ export default function Team() {
     ...rosterQuery.detail(routeParams.id!),
     enabled: !!routeParams.id
   });
-  const forwards = roster?.forwards ?? [];
-  const defensemen = roster?.defensemen ?? [];
-  const goalies = roster?.goalies ?? [];
+  const filteredPlayers = useMemo<Player[]>(
+    () =>
+      [...(roster?.forwards ?? []), ...(roster?.defensemen ?? []), ...(roster?.goalies ?? [])].filter((player) =>
+        `${player.firstName.default} ${player.lastName.default}`
+          .toLowerCase()
+          .includes(playerFilterInputValue.toLowerCase())
+      ),
+    [roster, playerFilterInputValue]
+  );
 
   return (
     <section className={sharedStyles.flexPageContainer}>
@@ -51,44 +62,28 @@ export default function Team() {
           <p>Loading roster…</p>
         </div>
       ) : (
-        <div className={styles.rosterContainer}>
-          {forwards.map((player) => (
-            <Link key={player.id} className={styles.playerCard} to={`./player/${player.id}`}>
-              <img
-                className={styles.logo}
-                src={player.headshot}
-                alt={`${player.firstName.default} ${player.lastName.default}`}
-              />
-              <p className={styles.name}>
-                {player.firstName.default} {player.lastName.default}
-              </p>
-            </Link>
-          ))}
-          {defensemen.map((player) => (
-            <Link key={player.id} className={styles.playerCard} to={`./player/${player.id}`}>
-              <img
-                className={styles.logo}
-                src={player.headshot}
-                alt={`${player.firstName.default} ${player.lastName.default}`}
-              />
-              <p className={styles.name}>
-                {player.firstName.default} {player.lastName.default}
-              </p>
-            </Link>
-          ))}
-          {goalies.map((player) => (
-            <Link key={player.id} className={styles.playerCard} to={`./player/${player.id}`}>
-              <img
-                className={styles.logo}
-                src={player.headshot}
-                alt={`${player.firstName.default} ${player.lastName.default}`}
-              />
-              <p className={styles.name}>
-                {player.firstName.default} {player.lastName.default}
-              </p>
-            </Link>
-          ))}
-        </div>
+        <>
+          <Autocomplete
+            disablePortal
+            clearOnBlur={false}
+            options={filteredPlayers?.map((player) => `${player.firstName.default} ${player.lastName.default}`) ?? []}
+            value={selectedPlayer}
+            onChange={(_, newValue: string | null) => {
+              setSelectedPlayer(newValue);
+            }}
+            inputValue={playerFilterInputValue}
+            onInputChange={(_, newInputValue) => {
+              setPlayerFilterInputValue(newInputValue);
+            }}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Player" />}
+          />
+          <div className={styles.rosterContainer}>
+            {filteredPlayers.map((player) => (
+              <RosterPlayerCard key={player.id} player={player} teamAbbrev={routeParams.id!} />
+            ))}
+          </div>
+        </>
       )}
     </section>
   );

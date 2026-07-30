@@ -134,6 +134,98 @@ export interface Award {
   seasons: AwardSeason[];
 }
 
+// --- Goalie stats ---
+// Goalies use a different stat shape than skaters (save %, GAA, wins/losses,
+// shutouts instead of goals/assists/points).
+
+export interface GoalieStatLine {
+  gamesPlayed: number;
+  goalsAgainstAvg: number;
+  losses: number;
+  otLosses: number;
+  savePctg: number;
+  shutouts: number;
+  wins: number;
+}
+
+export interface GoalieFeaturedStats {
+  season: number;
+  regularSeason: {
+    subSeason: GoalieStatLine;
+    career: GoalieStatLine;
+  };
+  playoffs?: {
+    subSeason: GoalieStatLine;
+    career: GoalieStatLine;
+  };
+}
+
+export interface GoalieTotalsStatLine {
+  assists: number;
+  gamesPlayed: number;
+  gamesStarted: number;
+  goals: number;
+  goalsAgainst: number;
+  goalsAgainstAvg: number;
+  losses: number;
+  otLosses: number;
+  pim: number;
+  savePctg: number;
+  shotsAgainst: number;
+  shutouts: number;
+  timeOnIce: string;
+  wins: number;
+}
+
+export interface GoalieCareerTotals {
+  regularSeason: GoalieTotalsStatLine;
+  playoffs: GoalieTotalsStatLine;
+}
+
+export interface GoalieGameLog {
+  decision: 'W' | 'L' | 'O';
+  gameDate: string;
+  gameId: number;
+  gameTypeId: number;
+  gamesStarted: number;
+  goalsAgainst: number;
+  homeRoadFlag: 'H' | 'R';
+  opponentAbbrev: string;
+  penaltyMins: number;
+  savePctg: number;
+  shotsAgainst: number;
+  teamAbbrev: string;
+  toi: string;
+}
+
+export interface GoalieSeasonTotal {
+  gameTypeId: number;
+  season: number;
+  sequence: number;
+  teamName: LocalizedName;
+  leagueAbbrev?: string;
+  gamesPlayed?: number;
+  gamesStarted?: number;
+  goalsAgainst?: number;
+  goalsAgainstAvg?: number;
+  savePctg?: number;
+  shotsAgainst?: number;
+  shutouts?: number;
+  wins?: number;
+  losses?: number;
+  otLosses?: number;
+  ties?: number;
+  timeOnIce?: string;
+  assists?: number;
+  goals?: number;
+  pim?: number;
+  teamCommonName?: LocalizedName;
+  teamPlaceNameWithPreposition?: LocalizedName;
+}
+
+// --- Player landing payload ---
+// Bio fields are common to skaters and goalies; the stat blocks differ.
+
 export interface PlayerStats {
   playerId: number;
   isActive: boolean;
@@ -163,12 +255,27 @@ export interface PlayerStats {
   playerSlug: string;
   inTop100AllTime: number;
   inHHOF: number;
-  featuredStats: FeaturedStats;
-  careerTotals: CareerTotals;
   shopLink: string;
   twitterLink: string;
   watchLink: string;
+  awards?: Award[];
+}
+
+export function isSkaterStats(stats: PlayerStats): stats is SkaterStats {
+  return stats.position !== 'G';
+}
+
+export interface SkaterStats extends PlayerStats {
+  featuredStats: FeaturedStats;
+  careerTotals: CareerTotals;
   last5Games: GameLog[];
   seasonTotals: SeasonTotal[];
-  awards: Award[];
+}
+
+export interface GoalieStats extends PlayerStats {
+  position: 'G';
+  featuredStats: GoalieFeaturedStats;
+  careerTotals: GoalieCareerTotals;
+  last5Games: GoalieGameLog[];
+  seasonTotals: GoalieSeasonTotal[];
 }

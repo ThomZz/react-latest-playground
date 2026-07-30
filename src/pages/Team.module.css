@@ -14,43 +14,6 @@
   flex-wrap: wrap;
 }
 
-.playerCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-  width: 16rem;
-  padding: 2rem 1.6rem;
-  background-color: #2c3e507a;
-  border: 0.1rem solid #34495e;
-  border-top: 0.4rem solid #3498db;
-  border-radius: 0.6rem;
-  color: #ecf0f1;
-  text-decoration: none !important;
-  text-align: center;
-  transition:
-    transform 0.15s ease,
-    border-top-color 0.15s ease;
-}
-
-.playerCard:hover {
-  transform: translateY(-0.4rem);
-  border-top-color: #2980b9;
-}
-
-.name {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #ecf0f1;
-}
-
-.logo {
-  width: 10rem;
-  height: 10rem;
-  object-fit: contain;
-}
-
 .teamLogo {
   width: 12rem;
   height: 10rem;

@@ -180,45 +180,47 @@ export default function Player() {
                       <TableCell>{row.faceoffWinningPctg ? (row.faceoffWinningPctg * 100).toFixed(1) : '--'}</TableCell>
                     </TableRow>
                   ))}
-                  <TableRow
-                    sx={{
-                      '& .MuiTableCell-root': {
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        backgroundColor: '#3498db63'
-                      }
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      NHL Carreer
-                    </TableCell>
-                    <TableCell>&nbsp;</TableCell>
-                    <TableCell>&nbsp;</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.gamesPlayed ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.goals ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.assists ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.points ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.plusMinus ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.pim ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.powerPlayGoals ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.powerPlayPoints ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.shorthandedGoals ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.shorthandedPoints ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.avgToi ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.gameWinningGoals ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.otGoals ?? '--'}</TableCell>
-                    <TableCell>{player!.careerTotals.regularSeason.shots ?? '--'}</TableCell>
-                    <TableCell>
-                      {player!.careerTotals.regularSeason.shootingPctg
-                        ? (player!.careerTotals.regularSeason.shootingPctg * 100).toFixed(1)
-                        : '--'}
-                    </TableCell>
-                    <TableCell>
-                      {player!.careerTotals.regularSeason.faceoffWinningPctg
-                        ? (player!.careerTotals.regularSeason.faceoffWinningPctg * 100).toFixed(1)
-                        : '--'}
-                    </TableCell>
-                  </TableRow>
+                  {player!.careerTotals ? (
+                    <TableRow
+                      sx={{
+                        '& .MuiTableCell-root': {
+                          fontSize: '16px',
+                          fontWeight: 'bold',
+                          backgroundColor: '#3498db63'
+                        }
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        NHL Carreer
+                      </TableCell>
+                      <TableCell>&nbsp;</TableCell>
+                      <TableCell>&nbsp;</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.gamesPlayed ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.goals ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.assists ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.points ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.plusMinus ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.pim ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.powerPlayGoals ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.powerPlayPoints ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.shorthandedGoals ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.shorthandedPoints ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.avgToi ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.gameWinningGoals ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.otGoals ?? '--'}</TableCell>
+                      <TableCell>{player!.careerTotals.regularSeason?.shots ?? '--'}</TableCell>
+                      <TableCell>
+                        {player!.careerTotals.regularSeason?.shootingPctg
+                          ? (player!.careerTotals.regularSeason.shootingPctg * 100).toFixed(1)
+                          : '--'}
+                      </TableCell>
+                      <TableCell>
+                        {player!.careerTotals.regularSeason?.faceoffWinningPctg
+                          ? (player!.careerTotals.regularSeason.faceoffWinningPctg * 100).toFixed(1)
+                          : '--'}
+                      </TableCell>
+                    </TableRow>
+                  ) : null}
                 </TableBody>
               </Table>
             </TableContainer>

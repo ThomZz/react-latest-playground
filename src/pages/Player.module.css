@@ -41,7 +41,8 @@
   height: 6rem;
   padding: 1rem;
   box-sizing: border-box;
-  background-color: #242424;
+  background-color: #242424d5;
+  backdrop-filter: blur(0.5rem);
 }
 
 .playerHeader > h1 {

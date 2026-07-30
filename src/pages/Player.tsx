@@ -109,10 +109,16 @@ export default function Player() {
                       <b>Shoots:</b> {player?.shootsCatches}
                     </div>
                     <div>
-                      <b>Draft:</b> {player?.draftDetails?.year}, {player?.draftDetails?.teamAbbrev} (
-                      {player?.draftDetails?.overallPick != null && ordinal(player.draftDetails.overallPick)} overall),{' '}
-                      {player?.draftDetails?.round != null && ordinal(player.draftDetails.round)} round,{' '}
-                      {player?.draftDetails?.pickInRound != null && ordinal(player.draftDetails.pickInRound)} pick
+                      <b>Draft:</b>{' '}
+                      {player?.draftDetails ? (
+                        <>
+                          {player.draftDetails.year}, {player.draftDetails.teamAbbrev} (
+                          {ordinal(player.draftDetails.overallPick)} overall), {ordinal(player.draftDetails.round)}{' '}
+                          round, {ordinal(player.draftDetails.pickInRound)} pick
+                        </>
+                      ) : (
+                        'Not drafted'
+                      )}
                     </div>
                   </div>
                 </div>

@@ -15,6 +15,12 @@ html {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  --rui-dimension-breakpoint-sm: 576px;
+  --rui-dimension-breakpoint-md: 768px;
+  --rui-dimension-breakpoint-lg: 1056px;
+  --rui-dimension-breakpoint-xl: 1344px;
+  --rui-dimension-breakpoint-x2l: 1440px;
+  --rui-dimension-breakpoint-x3l: 1920px;
 }
 
 * {

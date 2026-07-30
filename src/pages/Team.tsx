@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import rosterQuery from '../queries/roster';
 import teamQuery from '../queries/team';
 import styles from './Team.module.css';
+import sharedStyles from '../styles/shared.module.css';
 import { type Team } from '../api/models/team';
 import { CircularProgress, Skeleton } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
@@ -30,7 +31,7 @@ export default function Team() {
   const goalies = roster?.goalies ?? [];
 
   return (
-    <section className={styles.mainSection}>
+    <section className={sharedStyles.flexPageContainer}>
       <div className={styles.teamHeader}>
         {isTeamLoading ? (
           <>
@@ -45,10 +46,10 @@ export default function Team() {
         )}
       </div>
       {isRosterLoading ? (
-        <>
+        <div className={sharedStyles.fullSizeAbsoluteFlexContainer}>
           <CircularProgress size="106px" aria-label="Loading…" />
           <p>Loading roster…</p>
-        </>
+        </div>
       ) : (
         <div className={styles.rosterContainer}>
           {forwards.map((player) => (

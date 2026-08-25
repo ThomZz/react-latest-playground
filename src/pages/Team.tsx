@@ -80,7 +80,7 @@ export default function Team() {
           />
           <div className={styles.rosterContainer}>
             {filteredPlayers.map((player) => (
-              <RosterPlayerCard key={player.id} player={player} teamAbbrev={routeParams.id!} />
+              <RosterPlayerCard key={player.id} player={player} />
             ))}
           </div>
         </>

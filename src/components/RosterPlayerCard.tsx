@@ -4,12 +4,11 @@ import styles from './RosterPlayerCard.module.css';
 
 type RosterPlayerComponentProps = {
   player: Player;
-  teamAbbrev: string;
 };
 
-export default function RosterPlayerCard({ player, teamAbbrev }: RosterPlayerComponentProps) {
+export default function RosterPlayerCard({ player }: RosterPlayerComponentProps) {
   return (
-    <Link key={player.id} className={styles.container} to={`/team/${teamAbbrev}/player/${player.id}`}>
+    <Link key={player.id} className={styles.container} to={`/player/${player.id}`}>
       <span className={styles.position}>{player.positionCode}</span>
       {player.sweaterNumber != null && <span className={styles.sweaterNumber}>#{player.sweaterNumber}</span>}
       <img

@@ -6,10 +6,10 @@ type SkaterStatsTableComponentProps = {
 };
 
 export default function SkaterStatsTable({ player }: SkaterStatsTableComponentProps) {
-  const seenSeasons = new Set<number>();
+  const seenSeasons = new Set<string>();
   const seasonTotals = player.seasonTotals.filter((row) => {
-    if (seenSeasons.has(row.season)) return false;
-    seenSeasons.add(row.season);
+    if (seenSeasons.has(`${row.season}:${row.teamName.default}:${row.leagueAbbrev}`)) return false;
+    seenSeasons.add(`${row.season}:${row.teamName.default}:${row.leagueAbbrev}`);
     return true;
   });
 

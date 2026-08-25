@@ -17,10 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'team/:id',
-        children: [
-          { index: true, element: <Team /> },
-          { path: 'player/:playerId', element: <Player /> }
-        ]
+        element: <Team />
+      },
+      {
+        path: 'player/:playerId',
+        element: <Player />
       },
       { path: 'about', element: <About /> },
       { path: '*', element: <NotFound /> }

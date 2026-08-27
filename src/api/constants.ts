@@ -1,6 +1,6 @@
 export const WEB_API_BASE_URL = 'https://nhl-api-proxy.onrender.com/web/v1';
 export const STATS_API_BASE_URL = 'https://nhl-api-proxy.onrender.com/stats/rest';
-export const SEARCH_API_BASE_URL = 'https://search.d3.nhle.com/api/v1/search/player?culture=en-us';
+export const SEARCH_API_BASE_URL = 'https://search.d3.nhle.com/api/v1/search/player?culture=en-us&limit=500';
 export const ASSETS_BASE_URL = 'https://assets.nhle.com';
 
 // This is a mapping of team abbreviations to their corresponding team IDs in the NHL API.

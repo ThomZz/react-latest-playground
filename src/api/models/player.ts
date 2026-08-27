@@ -6,6 +6,27 @@ export interface LocalizedName {
 export type PositionCode = 'C' | 'L' | 'R' | 'D' | 'G';
 export type Handedness = 'L' | 'R';
 
+export interface PlayerSearchResult {
+  playerId: string;
+  name: string;
+  positionCode: PositionCode;
+  teamId: string | null;
+  teamAbbrev: string | null;
+  lastTeamId: string | null;
+  lastTeamAbbrev: string | null;
+  lastSeasonId: string | null;
+  sweaterNumber: number | null;
+  active: boolean;
+  height: string | null;
+  heightInInches: number | null;
+  heightInCentimeters: number | null;
+  weightInPounds: number | null;
+  weightInKilograms: number | null;
+  birthCity: string;
+  birthStateProvince: string | null;
+  birthCountry: string;
+}
+
 export interface Player {
   id: number;
   headshot: string;

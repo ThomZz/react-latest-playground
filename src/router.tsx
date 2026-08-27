@@ -5,6 +5,7 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Team from './pages/Team';
 import Player from './pages/Player';
+import PlayerSearchResult from './pages/PlayerSearchResult';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: 'player/:playerId',
         element: <Player />
+      },
+      {
+        path: 'playerSearch',
+        element: <PlayerSearchResult />
       },
       { path: 'about', element: <About /> },
       { path: '*', element: <NotFound /> }

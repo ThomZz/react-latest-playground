@@ -9,15 +9,16 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr min-content min-content;
+  gap: 0.5rem;
   height: 4rem;
   align-items: center;
-  justify-content: space-between;
   /* Pad the right edge by the scrollbar width (100vw - 100%) so the nav
      content clears the body scrollbar gutter instead of sitting under it. */
-  padding: 1rem;
-  padding-right: calc(1.3rem);
-  box-sizing: border-box;
+  padding: 0.2rem 1.3rem;
+  box-sizing: content-box;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   background-color: #242424;
 }

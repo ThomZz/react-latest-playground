@@ -71,13 +71,15 @@ export default function Player() {
                 </h1>
                 <h1>{player?.sweaterNumber ? `#${player?.sweaterNumber}` : ''}</h1>
                 <h1>{player?.position}</h1>
-                <img
-                  className={styles.teamLogo}
-                  src={`https://assets.nhle.com/logos/nhl/svg/${player!.currentTeamAbbrev}_dark.svg`}
-                  width="72"
-                  height="64"
-                  title={`${player?.fullTeamName.default}`}
-                />
+                {player?.currentTeamAbbrev && (
+                  <img
+                    className={styles.teamLogo}
+                    src={`https://assets.nhle.com/logos/nhl/svg/${player?.currentTeamAbbrev}_dark.svg`}
+                    width="72"
+                    height="64"
+                    title={`${player?.fullTeamName?.default}`}
+                  />
+                )}
               </div>
               <div className={styles.playerSummary}>
                 <div className={styles.playerCard}>

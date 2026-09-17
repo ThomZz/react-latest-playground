@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import RosterPlayerCard from '../components/RosterPlayerCard';
 import type { Player } from '../api/models/player';
 import { useMemo, useState } from 'react';
+import ScoreboardCarousel from '../components/ScoreboardCarousel';
 
 export default function Team() {
   const queryClient = useQueryClient();
@@ -43,6 +44,7 @@ export default function Team() {
 
   return (
     <section className={sharedStyles.flexPageContainer}>
+      <ScoreboardCarousel teamAbbrev={routeParams.id} />
       <div className={styles.teamHeader}>
         {isTeamLoading ? (
           <>

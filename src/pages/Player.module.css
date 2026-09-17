@@ -46,12 +46,12 @@
 }
 
 .playerHeader > h1 {
-    margin: 0;
-    line-height: 24px;
+  margin: 0;
+  line-height: 24px;
 }
 
 .teamLogo {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .playerSummary {
@@ -65,27 +65,28 @@
 }
 
 .playerCard {
-    display: grid;
-    align-items: center;
-    grid-template-columns: min-content 1fr;
-    gap: 1.5rem;
-    width: 50%;
-    height: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: min-content 1fr;
+  gap: 1.5rem;
+  width: 50%;
+  height: 100%;
 }
 
 .playerAvatar {
-    border-radius: 50%;
-    background-color: #242424;
-    object-fit: cover;
+  border-radius: 50%;
+  background-color: #242424;
+  object-fit: cover;
 }
 
-.playerAvatar > img, .playerAvatar > div {
-    padding: 0.5rem;
+.playerAvatar > img,
+.playerAvatar > div {
+  padding: 0.5rem;
 }
 
 .playerDetails {
-    width: 100%;
-    font-size: 1.6rem;
+  width: 100%;
+  font-size: 1.6rem;
 }
 
 .statsContainer {

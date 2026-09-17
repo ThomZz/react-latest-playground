@@ -5,7 +5,11 @@ import sharedStyles from '../styles/shared.module.css';
 import TeamCard from '../components/TeamCard';
 import TextField from '@mui/material/TextField';
 import { useMemo, useState } from 'react';
+
 import { Autocomplete, CircularProgress } from '@mui/material';
+import ScoreboardCarousel from '../components/ScoreboardCarousel';
+
+const fiveDaysAgo = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
 export default function Home() {
   const { data: teams, isLoading: areTeamsLoading } = useQuery(teamQuery.list);
@@ -18,6 +22,7 @@ export default function Home() {
 
   return (
     <section className={sharedStyles.flexPageContainer}>
+      <ScoreboardCarousel date={fiveDaysAgo} />
       {areTeamsLoading ? (
         <div className={sharedStyles.fullSizeAbsoluteFlexContainer}>
           <CircularProgress size="106px" aria-label="Loading…" />

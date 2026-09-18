@@ -34,8 +34,26 @@ export default function ScoreboardCarousel({ date, teamAbbrev }: ScoreboardCarou
         </section>
       ) : (
         <section className={styles.container}>
-          {scoreboard?.flatMap((days) => days.games.map((game) => <ScoreboardGameCard key={game.id} game={game} />)) ??
-            []}
+          {scoreboard?.map((day) => {
+            const games = day.games.map((game) => <ScoreboardGameCard key={game.id} game={game} />);
+            const isGrouped = day.games.length > 1;
+
+            return (
+              <div key={day.date} className={isGrouped ? styles.dayGroupWithBackground : styles.dayGroup}>
+                <div className={isGrouped ? styles.dayHeader : styles.dayHeaderHidden}>
+                  {isGrouped &&
+                    new Intl.DateTimeFormat(undefined, {
+                      weekday: 'short',
+                      month: 'short',
+                      day: 'numeric',
+                      timeZone: 'UTC'
+                    }).format(new Date(`${day.date}T00:00:00Z`))}
+                </div>
+
+                <div className={styles.cardsRow}>{games}</div>
+              </div>
+            );
+          }) ?? []}
         </section>
       )}
     </>

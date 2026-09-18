@@ -36,6 +36,7 @@ export default function ScoreboardGameCard({ game }: Props) {
   const { awayTeam, homeTeam, gameState, gameType, startTimeUTC } = game;
   const gameTypeLabel = GAME_TYPE_LABEL[gameType];
   const isLive = gameState === 'LIVE' || gameState === 'CRIT';
+  const isFutureGame = gameState === 'FUT' || gameState === 'PRE';
   const hasScore = awayTeam.score !== undefined && homeTeam.score !== undefined;
   const statusLabel = getStatusLabel(game);
 
@@ -44,7 +45,7 @@ export default function ScoreboardGameCard({ game }: Props) {
   const startTime = startDate.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card}${isFutureGame ? '' : ` ${styles.cardInteractive}`}`}>
       <div className={styles.dateTime}>
         {gameTypeLabel && (
           <span className={`${styles.gameTypeBadge}${gameType === 3 ? ` ${styles.gameTypeBadgePlayoffs}` : ''}`}>

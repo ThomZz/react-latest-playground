@@ -13,6 +13,17 @@
   font-weight: 700;
   color: #ecf0f1;
   gap: 0.3rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.cardInteractive {
+  cursor: pointer;
+}
+
+.cardInteractive:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.18);
+  border-color: #4a90e2;
 }
 
 .teams {
